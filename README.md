@@ -37,3 +37,14 @@ docs/          backlog и порядок дальнейшей работы
 ## Backlog и Git
 
 24 задачи на восемь недель в `docs/backlog.md`. Оценки — рабочие часы одного разработчика, не календарные дедлайны. Коммит связывается с задачей, например `feat(FE-002): create semantic home page structure`. Локальные подготовительные коммиты не означают завершения размещения на GitHub.
+
+## Ссылки для проверки
+
+Репозиторий: https://github.com/SkyBlinkkk/uniload
+
+Backlog: https://github.com/SkyBlinkkk/uniload/issues?q=is%3Aopen+label%3ABACKLOG
+
+Все 24 задачи: https://github.com/SkyBlinkkk/uniload/issues?q=is%3Aissue
+
+FE-001 и FE-002 выполнены. Остальные 22 задачи открыты с меткой BACKLOG. Все поля задания сохранены в описаниях; зависимости содержат ссылки на Issues.
+

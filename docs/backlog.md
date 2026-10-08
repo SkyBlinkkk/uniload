@@ -1,6 +1,8 @@
 # Backlog UniLoad
 
-Стек: React, Vite, JavaScript, CSS. План: 8 недель, 70 рабочих часов. Все задачи принадлежат колонке BACKLOG до переноса в сервис и изменения статуса вручную.
+Стек: React, Vite, JavaScript, CSS. План: 8 недель, 70 рабочих часов. FE-001 и FE-002 выполнены в ЛР №4; оставшиеся 22 задачи открыты в GitHub Issues с меткой BACKLOG.
+
+[Все задачи проекта](https://github.com/SkyBlinkkk/uniload/issues?q=is%3Aissue) · [Открытый backlog](https://github.com/SkyBlinkkk/uniload/issues?q=is%3Aopen+label%3ABACKLOG)
 
 ## FE-001 Подготовить репозиторий и документацию
 Week: 1 | Epic: Подготовка | Priority: High | Estimate: 3 ч | Dependencies: нет
