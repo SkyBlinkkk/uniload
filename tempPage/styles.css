@@ -1,0 +1,11 @@
+body { margin: 1rem auto; padding: 0 1rem; max-width: 64rem; font-family: Arial, sans-serif; line-height: 1.5; }
+header, section, aside, footer { margin-block: 1.5rem; }
+nav ul { display: flex; flex-wrap: wrap; gap: 1rem; padding: 0; list-style: none; }
+.summary { display: grid; grid-template-columns: minmax(0, 22rem) auto; gap: .25rem 1rem; max-width: 30rem; }
+.summary dd { margin: 0; }
+.task-list { padding-left: 1.5rem; }
+.task-list li { margin-block: 1rem; }
+fieldset { max-width: 30rem; padding: 1rem; }
+label { display: block; margin-top: .75rem; }
+input { box-sizing: border-box; max-width: 100%; width: 100%; padding: .35rem; font: inherit; }
+button { font: inherit; margin: .25rem .25rem .25rem 0; }
