@@ -6,6 +6,7 @@
   <title>UniLoad — учебные задания и дедлайны</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <a href="#main">Перейти к основному содержимому</a>
   <header>
@@ -19,25 +20,30 @@
       </ul>
     </nav>
   </header>
+
   <main id="main" tabindex="-1">
     <section id="overview" aria-labelledby="page-title">
       <h1 id="page-title">Учебные задания и дедлайны</h1>
       <p>Записывайте задания по дисциплинам, выбирайте ближайшую работу и отмечайте выполнение.</p>
       <p><a href="#tasks">Посмотреть ближайшие задания</a> · <a href="#new-task">Перейти к форме</a></p>
-      <p>Начальная структура страницы для ЛР №4. Данные ниже приведены для примера на 8 октября 2026 года. Управление заданиями будет реализовано в следующем этапе.</p>
+      <p>Пример списка на 8 октября 2026 года. Добавление и изменение заданий пока недоступны.</p>
     </section>
+
     <section aria-labelledby="summary-title">
       <h2 id="summary-title">Сводка заданий</h2>
       <dl class="summary">
-        <dt>Активные</dt><dd>2</dd>
-        <dt>Выполненные</dt><dd>1</dd>
-        <dt>Просроченные среди активных</dt><dd>1</dd>
+        <dt>Активные</dt>
+        <dd>2</dd>
+        <dt>Выполненные</dt>
+        <dd>1</dd>
+        <dt>Просроченные среди активных</dt>
+        <dd>1</dd>
       </dl>
-      <p>Пример общих счётчиков. В рабочей версии они рассчитываются по всему списку.</p>
     </section>
+
     <section id="tasks" aria-labelledby="tasks-title">
       <h2 id="tasks-title">Ближайшие задания</h2>
-      <p>В главной сводке показаны активные задания. Общий список и фильтры будут отдельным экраном.</p>
+      <p>Активные задания, начиная с ближайшего срока.</p>
       <ul class="task-list">
         <li>
           <article aria-labelledby="task-one">
@@ -45,7 +51,11 @@
             <p>Дисциплина: веб-разработка</p>
             <p>Срок: <time datetime="2026-10-07">7 октября 2026</time></p>
             <p>Статус: активное · Срочность: просрочено</p>
-            <p><button type="button" disabled>Отметить выполненным</button> <button type="button" disabled>Редактировать</button> <button type="button" disabled>Удалить</button></p>
+            <p>
+              <button type="button" disabled>Отметить выполненным</button>
+              <button type="button" disabled>Редактировать</button>
+              <button type="button" disabled>Удалить</button>
+            </p>
           </article>
         </li>
         <li>
@@ -54,14 +64,19 @@
             <p>Дисциплина: проектирование цифровых решений</p>
             <p>Срок: <time datetime="2026-10-10">10 октября 2026</time></p>
             <p>Статус: активное · Срочность: срочно</p>
-            <p><button type="button" disabled>Отметить выполненным</button> <button type="button" disabled>Редактировать</button> <button type="button" disabled>Удалить</button></p>
+            <p>
+              <button type="button" disabled>Отметить выполненным</button>
+              <button type="button" disabled>Редактировать</button>
+              <button type="button" disabled>Удалить</button>
+            </p>
           </article>
         </li>
       </ul>
     </section>
+
     <section id="new-task" aria-labelledby="form-title">
       <h2 id="form-title">Добавление задания</h2>
-      <p id="form-note">Все поля обязательны. Это структура будущей формы; ввод и сохранение пока отключены.</p>
+      <p id="form-note">Все поля обязательны. Форма пока недоступна.</p>
       <form aria-describedby="form-note">
         <fieldset disabled>
           <legend>Новое учебное задание</legend>
@@ -77,12 +92,13 @@
         </fieldset>
       </form>
     </section>
+
     <aside id="storage" aria-labelledby="storage-title">
       <h2 id="storage-title">Хранение заданий</h2>
-      <p>В рабочем приложении список будет сохраняться в текущем браузере на одном адресе. Очистка данных браузера удаляет задания. Синхронизация между устройствами не предусмотрена.</p>
-      <p>Для пустого списка предусмотрено добавление первого задания, для отсутствия совпадений — сброс фильтров. Ошибки чтения и записи будут показываться отдельно с действием восстановления.</p>
+      <p>Список будет храниться в этом браузере. После очистки данных браузера задания удалятся. Перенос между устройствами не предусмотрен.</p>
     </aside>
   </main>
+
   <footer>
     <p>UniLoad · Индивидуальный планировщик учебных заданий · Учебный проект, 2026</p>
     <a href="#page-title">К началу страницы</a>
