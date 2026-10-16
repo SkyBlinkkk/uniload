@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UniLoad — учебные задания, дисциплины и ближайшие сроки в одном месте.">
   <title>UniLoad — учебные задания и дедлайны</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <a href="#main">Перейти к основному содержимому</a>
-  <header>
-    <p><strong>UniLoad</strong> — планировщик учебной нагрузки</p>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <header class="site-header container">
+    <p class="brand"><span class="brand-mark" aria-hidden="true">U</span><strong>UniLoad</strong></p>
     <nav aria-label="Основная навигация">
-      <ul>
+      <ul class="nav-list">
         <li><a href="#overview">Главная</a></li>
         <li><a href="#tasks">Ближайшие задания</a></li>
         <li><a href="#new-task">Добавление задания</a></li>
@@ -21,86 +22,98 @@
     </nav>
   </header>
 
-  <main id="main" tabindex="-1">
-    <section id="overview" aria-labelledby="page-title">
-      <h1 id="page-title">Учебные задания и дедлайны</h1>
-      <p>Записывайте задания по дисциплинам, выбирайте ближайшую работу и отмечайте выполнение.</p>
-      <p><a href="#tasks">Посмотреть ближайшие задания</a> · <a href="#new-task">Перейти к форме</a></p>
-      <p>Пример списка на 8 октября 2026 года. Добавление и изменение заданий пока недоступны.</p>
+  <main class="page-layout container" id="main" tabindex="-1">
+    <section class="intro" id="overview" aria-labelledby="page-title">
+      <p class="eyebrow">Личный учебный план</p>
+      <h1 id="page-title">Учебные задания<br>и дедлайны</h1>
+      <p class="intro-text">Записывайте задания по дисциплинам, выбирайте ближайшую работу и отмечайте выполнение.</p>
+      <p class="intro-actions">
+        <a class="button button-primary" href="#tasks">Ближайшие задания <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="#new-task">Перейти к форме</a>
+      </p>
+      <p class="demo-note">Пример на 8 октября 2026 года. Добавление и изменение заданий пока недоступны.</p>
     </section>
 
-    <section aria-labelledby="summary-title">
-      <h2 id="summary-title">Сводка заданий</h2>
+    <section class="overview" aria-labelledby="summary-title">
+      <h2 class="section-title" id="summary-title">Сводка заданий</h2>
       <dl class="summary">
-        <dt>Активные</dt>
-        <dd>2</dd>
-        <dt>Выполненные</dt>
-        <dd>1</dd>
-        <dt>Просроченные среди активных</dt>
-        <dd>1</dd>
+        <div class="summary-item">
+          <dt>Активные</dt>
+          <dd>2</dd>
+        </div>
+        <div class="summary-item">
+          <dt>Выполненные</dt>
+          <dd>1</dd>
+        </div>
+        <div class="summary-item">
+          <dt>Просроченные среди активных</dt>
+          <dd class="overdue-count">1</dd>
+        </div>
       </dl>
     </section>
 
-    <section id="tasks" aria-labelledby="tasks-title">
-      <h2 id="tasks-title">Ближайшие задания</h2>
-      <p>Активные задания, начиная с ближайшего срока.</p>
+    <section class="tasks" id="tasks" aria-labelledby="tasks-title">
+      <h2 class="section-title" id="tasks-title">Ближайшие задания</h2>
+      <p class="section-description">Активные задания, начиная с ближайшего срока.</p>
       <ul class="task-list">
         <li>
-          <article aria-labelledby="task-one">
-            <h3 id="task-one">Практическая работа по веб-разработке</h3>
-            <p>Дисциплина: веб-разработка</p>
-            <p>Срок: <time datetime="2026-10-07">7 октября 2026</time></p>
-            <p>Статус: активное · Срочность: просрочено</p>
-            <p>
-              <button type="button" disabled>Отметить выполненным</button>
-              <button type="button" disabled>Редактировать</button>
-              <button type="button" disabled>Удалить</button>
+          <article class="task-card" aria-labelledby="task-one">
+            <p class="task-subject">Веб-разработка</p>
+            <h3 class="task-title" id="task-one">Практическая работа по веб-разработке</h3>
+            <p class="task-date">Срок: <time datetime="2026-10-07">7 октября 2026</time></p>
+            <p class="task-status"><span>Активное</span><span class="status status-overdue">Просрочено</span></p>
+            <p class="task-actions">
+              <button class="button button-secondary" type="button" disabled>Отметить выполненным</button>
+              <button class="button button-quiet" type="button" disabled>Редактировать</button>
+              <button class="button button-quiet" type="button" disabled>Удалить</button>
             </p>
           </article>
         </li>
         <li>
-          <article aria-labelledby="task-two">
-            <h3 id="task-two">Подготовить backlog UniLoad</h3>
-            <p>Дисциплина: проектирование цифровых решений</p>
-            <p>Срок: <time datetime="2026-10-10">10 октября 2026</time></p>
-            <p>Статус: активное · Срочность: срочно</p>
-            <p>
-              <button type="button" disabled>Отметить выполненным</button>
-              <button type="button" disabled>Редактировать</button>
-              <button type="button" disabled>Удалить</button>
+          <article class="task-card" aria-labelledby="task-two">
+            <p class="task-subject">Проектирование цифровых решений</p>
+            <h3 class="task-title" id="task-two">Подготовить backlog UniLoad</h3>
+            <p class="task-date">Срок: <time datetime="2026-10-10">10 октября 2026</time></p>
+            <p class="task-status"><span>Активное</span><span class="status status-urgent">Срочно</span></p>
+            <p class="task-actions">
+              <button class="button button-secondary" type="button" disabled>Отметить выполненным</button>
+              <button class="button button-quiet" type="button" disabled>Редактировать</button>
+              <button class="button button-quiet" type="button" disabled>Удалить</button>
             </p>
           </article>
         </li>
       </ul>
     </section>
 
-    <section id="new-task" aria-labelledby="form-title">
-      <h2 id="form-title">Добавление задания</h2>
-      <p id="form-note">Все поля обязательны. Форма пока недоступна.</p>
-      <form aria-describedby="form-note">
+    <section class="new-task" id="new-task" aria-labelledby="form-title">
+      <h2 class="section-title" id="form-title">Добавление задания</h2>
+      <p class="section-description" id="form-note">Все поля обязательны. Форма пока недоступна.</p>
+      <form class="task-form" aria-describedby="form-note">
         <fieldset disabled>
           <legend>Новое учебное задание</legend>
           <label for="task-title">Название задания</label>
-          <input id="task-title" name="title" type="text" required>
+          <input id="task-title" name="title" type="text" placeholder="Например, отчёт по практике" required>
           <label for="task-subject">Дисциплина</label>
-          <input id="task-subject" name="subject" type="text" required>
+          <input id="task-subject" name="subject" type="text" placeholder="Название дисциплины" required>
           <label for="task-date">Календарный срок</label>
           <input id="task-date" name="dueDate" type="date" required>
-          <p>Прошедшую дату можно указать для просроченного задания.</p>
-          <button type="submit">Сохранить задание</button>
-          <button type="button">Отмена</button>
+          <p class="field-hint">Прошедшую дату можно указать для просроченного задания.</p>
+          <p class="form-actions">
+            <button class="button button-primary" type="submit">Сохранить задание</button>
+            <button class="button button-quiet" type="button">Отмена</button>
+          </p>
         </fieldset>
       </form>
     </section>
 
-    <aside id="storage" aria-labelledby="storage-title">
+    <aside class="storage-note" id="storage" aria-labelledby="storage-title">
       <h2 id="storage-title">Хранение заданий</h2>
       <p>Список будет храниться в этом браузере. После очистки данных браузера задания удалятся. Перенос между устройствами не предусмотрен.</p>
     </aside>
   </main>
 
-  <footer>
-    <p>UniLoad · Индивидуальный планировщик учебных заданий · Учебный проект, 2026</p>
+  <footer class="site-footer container">
+    <p><strong>UniLoad</strong> · Учебный проект, 2026</p>
     <a href="#page-title">К началу страницы</a>
   </footer>
 </body>
