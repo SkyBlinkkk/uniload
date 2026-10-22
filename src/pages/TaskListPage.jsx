@@ -26,6 +26,7 @@ export default function TaskListPage({ tasks, today, onToggle, onDelete }) {
       <Summary tasks={tasks} today={today} />
       <TaskFilters subjects={subjects} filters={currentFilters} onChange={setFilters} onReset={reset} />
       <p className="results-count" aria-live="polite">Показано: {visible.length} из {tasks.length}</p>
+      <h2 className="visually-hidden">Список заданий</h2>
       {visible.length ? <ul className="task-list">{visible.map(task => <li key={task.id}><TaskCard task={task} today={today} onToggle={onToggle} onDelete={onDelete} /></li>)}</ul> : tasks.length ? (
         <section className="empty-state"><h2>Ничего не найдено</h2><p>Попробуйте другую дисциплину или снимите фильтр выполнения.</p><Button variant="secondary" onClick={reset}>Сбросить фильтры</Button></section>
       ) : (
