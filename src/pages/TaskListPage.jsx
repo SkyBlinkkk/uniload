@@ -2,7 +2,7 @@ import React from 'react';
 import TaskCard from '../components/TaskCard.jsx';
 import Summary from '../components/Summary.jsx';
 
-export default function TaskListPage({ tasks, today }) {
+export default function TaskListPage({ tasks, today, onToggle, onDelete }) {
   return (
     <>
       <header className="page-heading">
@@ -10,7 +10,7 @@ export default function TaskListPage({ tasks, today }) {
         <a className="button button-primary" id="add-task-button" href="#new">Добавить задание</a>
       </header>
       <Summary tasks={tasks} today={today} />
-      {tasks.length ? <ul className="task-list">{tasks.map(task => <li key={task.id}><TaskCard task={task} today={today} /></li>)}</ul> : (
+      {tasks.length ? <ul className="task-list">{tasks.map(task => <li key={task.id}><TaskCard task={task} today={today} onToggle={onToggle} onDelete={onDelete} /></li>)}</ul> : (
         <section className="empty-state"><h2>Заданий пока нет</h2><p>Добавьте первую работу, укажите дисциплину и срок.</p><a className="button button-primary" href="#new">Добавить первое задание</a></section>
       )}
     </>
