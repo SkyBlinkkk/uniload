@@ -1,0 +1,469 @@
+:root {
+  --page: #f5f7fb;
+  --surface: #ffffff;
+  --text: #202a43;
+  --muted: #5e6b82;
+  --line: #dde3ee;
+  --blue: #3659e8;
+  --blue-dark: #2545c7;
+  --blue-light: #edf1ff;
+  --red: #a83345;
+}
+
+/* Базовые стили */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+h1, h2, h3, p, dl {
+  margin: 0;
+}
+
+a {
+  color: var(--blue);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--blue-dark);
+}
+
+button, input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
+
+section, aside {
+  scroll-margin-top: 1.5rem;
+}
+
+.container {
+  width: min(100% - 2rem, 70rem);
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 1rem;
+  z-index: 1;
+  padding: 0.75rem 1rem;
+  max-width: calc(100% - 2rem);
+  transform: translateY(-200%);
+  border-radius: 0.5rem;
+  background: var(--surface);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Шапка и вводный блок */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  aspect-ratio: 1;
+  border-radius: 0.65rem;
+  background: var(--blue);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  display: inline-block;
+  padding-block: 0.5rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.nav-list a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.intro {
+  padding-top: 3rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+}
+
+.intro-text {
+  max-width: 38rem;
+  margin-top: 1.25rem;
+  color: var(--muted);
+  font-size: 1.0625rem;
+}
+
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.text-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.demo-note {
+  max-width: 40rem;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+/* Сводка и задания */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.section-description {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.summary {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.875rem;
+  background: var(--surface);
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summary dt {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.summary dd {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 650;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.overdue-count {
+  color: var(--red);
+}
+
+.task-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-card, .task-form {
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.875rem;
+  background: var(--surface);
+}
+
+.task-card {
+  overflow-wrap: anywhere;
+}
+
+.task-subject {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.task-title {
+  font-size: 1.125rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.task-date {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.task-status, .task-actions, .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-status {
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.status {
+  padding: 0.2rem 0.65rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+}
+
+.status-overdue {
+  background: #fff0f2;
+  color: var(--red);
+}
+
+.status-urgent {
+  background: #fff4dc;
+  color: #805212;
+}
+
+.task-actions {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 2.75rem;
+  max-width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.button-primary {
+  background: var(--blue);
+  color: white;
+}
+
+.button-primary:hover {
+  background: var(--blue-dark);
+  color: white;
+}
+
+.button-secondary {
+  background: var(--blue-light);
+  color: var(--blue-dark);
+}
+
+.button-quiet {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.button:disabled {
+  border-color: var(--line);
+  background: #f0f2f7;
+  color: #69748a;
+  cursor: not-allowed;
+}
+
+/* Форма и нижняя часть страницы */
+.task-form {
+  margin-top: 1rem;
+}
+
+.task-form fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.task-form legend {
+  margin-bottom: 0.5rem;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.task-form label {
+  display: block;
+  margin-block: 1rem 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.task-form input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: #f8f9fc;
+  color: var(--muted);
+  opacity: 1;
+}
+
+.task-form input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.field-hint {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.form-actions {
+  margin-top: 1.5rem;
+}
+
+.storage-note {
+  padding: 1.25rem;
+  border-left: 3px solid var(--blue);
+  background: var(--blue-light);
+}
+
+.storage-note h2 {
+  margin-bottom: 0.375rem;
+  font-size: 1rem;
+}
+
+.storage-note p {
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+/* На узком экране блоки идут в порядке HTML */
+@media (min-width: 40rem) {
+  .summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 1.5rem;
+  }
+
+  .summary-item {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-inline: 1rem;
+  }
+
+  .summary-item + .summary-item {
+    border-left: 1px solid var(--line);
+  }
+
+  .task-card, .task-form {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 60rem) {
+  .page-layout {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    column-gap: 2rem;
+  }
+
+  .intro, .overview, .storage-note {
+    grid-column: 1 / -1;
+  }
+
+  .intro {
+    padding-top: 3.5rem;
+  }
+}
