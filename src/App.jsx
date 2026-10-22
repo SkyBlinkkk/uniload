@@ -5,6 +5,8 @@ import useToday from './hooks/useToday.js';
 import useRoute, { navigate } from './hooks/useRoute.js';
 import TaskForm from './components/TaskForm.jsx';
 import ConfirmDialog from './components/ConfirmDialog.jsx';
+import StorageNotice from './components/StorageNotice.jsx';
+import StatusMessage from './components/StatusMessage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import TaskListPage from './pages/TaskListPage.jsx';
 
@@ -13,7 +15,8 @@ export default function App() {
   const [tasks, setTasks] = useState(loaded.tasks);
   const [storageIssue, setStorageIssue] = useState(loaded.issue);
   const [notice, setNotice] = useState('');
-  const [deletingTask, setDeletingTask] = useState(null);
+  const [pendingAction, setPendingAction] = useState(null);
+  const [dirty, setDirty] = useState(false);
   const route = useRoute();
   const today = useToday();
   const firstRender = useRef(true);
@@ -25,12 +28,14 @@ export default function App() {
     document.title = `${route === 'home' ? 'Учебные задания' : isForm ? 'Форма задания' : 'Мои задания'} — UniLoad`;
     if (firstRender.current) firstRender.current = false;
     else document.getElementById('page-heading')?.focus();
+    if (route !== 'tasks') setNotice('');
   }, [route, isForm]);
 
   function commitTasks(next, message) {
     setTasks(next);
     const blocked = storageIssue === 'invalid' || storageIssue === 'read';
     const saved = !blocked && writeTasks(next);
+    setDirty(!saved);
     if (!blocked) setStorageIssue(saved ? null : 'write');
     setNotice(saved ? message : `${message} Изменения не сохранены в браузере.`);
     return saved;
@@ -55,13 +60,46 @@ export default function App() {
   }
 
   function deleteTask() {
-    commitTasks(tasks.filter(task => task.id !== deletingTask.id), 'Задание удалено.');
-    setDeletingTask(null);
+    commitTasks(tasks.filter(task => task.id !== pendingAction.task.id), 'Задание удалено.');
+    setPendingAction(null);
+  }
+
+  function reloadTasks() {
+    const result = readTasks();
+    setStorageIssue(result.issue);
+    if (result.issue) {
+      setNotice('Прочитать сохранённые задания пока не удалось. Текущий список оставлен на экране.');
+      return;
+    }
+    setTasks(result.tasks);
+    setDirty(false);
+    setNotice('Сохранённые задания загружены.');
+  }
+
+  function retryStorage() {
+    if (storageIssue === 'write') {
+      const saved = writeTasks(tasks);
+      setStorageIssue(saved ? null : 'write');
+      setDirty(!saved);
+      setNotice(saved ? 'Изменения сохранены в браузере.' : 'Сохранение пока недоступно. Текущий список оставлен на экране.');
+    } else if (dirty) setPendingAction({ type: 'reload' });
+    else reloadTasks();
+  }
+
+  function confirmRecovery() {
+    if (pendingAction.type === 'reload') reloadTasks();
+    else {
+      const saved = writeTasks(tasks);
+      setStorageIssue(saved ? null : 'write');
+      setDirty(!saved);
+      setNotice(saved ? 'Повреждённые данные заменены текущим списком.' : 'Не удалось заменить данные. Текущий список не сохранён.');
+    }
+    setPendingAction(null);
   }
 
   let content;
   if (route === 'home') content = <HomePage tasks={tasks} today={today} />;
-  else if (route === 'tasks') content = <TaskListPage tasks={tasks} today={today} onToggle={toggleTask} onDelete={setDeletingTask} />;
+  else if (route === 'tasks') content = <TaskListPage tasks={tasks} today={today} onToggle={toggleTask} onDelete={task => setPendingAction({ type: 'delete', task })} />;
   else if (isForm && (!editingId || editingTask)) content = (
     <section className="form-page">
       <a className="text-link" href="#tasks">← К списку заданий</a>
@@ -82,11 +120,13 @@ export default function App() {
         </ul></nav>
       </header>
       <main className="container app-main" id="main" tabIndex="-1">
-        {storageIssue && <p className="storage-warning" role="alert">Не удалось {storageIssue === 'write' ? 'сохранить' : 'прочитать'} задания в браузере. Текущий список доступен, но изменения могут потеряться после перезагрузки.</p>}
-        <p className="notice" role="status" aria-live="polite">{notice}</p>
+        <StorageNotice issue={storageIssue} onRetry={retryStorage} onReset={() => setPendingAction({ type: 'reset' })} />
+        <StatusMessage>{notice}</StatusMessage>
         {content}
       </main>
-      {deletingTask && <ConfirmDialog title="Удалить задание?" confirmLabel="Удалить задание" onConfirm={deleteTask} onCancel={() => setDeletingTask(null)}>Задание «{deletingTask.title}» будет удалено из списка. Это действие нельзя отменить.</ConfirmDialog>}
+      {pendingAction?.type === 'delete' && <ConfirmDialog title="Удалить задание?" confirmLabel="Удалить задание" onConfirm={deleteTask} onCancel={() => setPendingAction(null)}>Задание «{pendingAction.task.title}» будет удалено из списка. Это действие нельзя отменить.</ConfirmDialog>}
+      {pendingAction?.type === 'reset' && <ConfirmDialog title="Сбросить повреждённые данные?" confirmLabel="Заменить данные" onConfirm={confirmRecovery} onCancel={() => setPendingAction(null)}>Исходная запись будет заменена текущим списком из {tasks.length} заданий. Несохранённые задания останутся в этом списке.</ConfirmDialog>}
+      {pendingAction?.type === 'reload' && <ConfirmDialog title="Загрузить сохранённый список?" confirmLabel="Загрузить список" onConfirm={confirmRecovery} onCancel={() => setPendingAction(null)}>Если чтение удастся, текущие несохранённые изменения будут заменены данными из браузера.</ConfirmDialog>}
       <footer className="site-footer container"><p><strong>UniLoad</strong> · Личный учебный план</p><p>Задания хранятся в этом браузере.</p></footer>
     </>
   );
